@@ -1,0 +1,37 @@
+.TrelloTask>span:nth-child(1) {
+    word-break: break-word;
+    line-height: 22px;
+}
+
+.TrelloTask>span:nth-child(2) {
+    width: 125px;
+}
+
+.TrelloTask abbr {
+    cursor: pointer;
+}
+
+.TrelloDateAndTime {
+    font-family: sans-serif;
+    font-size: .7rem;
+}
+
+.EditIcon {
+    font-size: 1.3rem;
+    color: #ffd65b;
+}
+
+.RedoIcon {
+    font-size: .9rem;
+    color:  #007bff;
+}
+
+.RemoveIcon {
+    font-size: 1rem;
+    color: red;
+}
+
+.CompletedIcon {
+    font-size: 1.4rem;
+    color: #30da5c;
+}

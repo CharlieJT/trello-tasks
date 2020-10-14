@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+
+.TrelloBoard {
+    font-family: 'Permanent Marker', cursive;
+    color: #fff;
+}
+
+.TrelloBoard>h2 {
+    text-decoration: underline;
+}
+
+.TrelloBoardContainers {
+    border: 2px solid #fff;
+    border-radius: 10px;
+    font-size: 1.6rem;
+}

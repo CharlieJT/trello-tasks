@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
+
+.OpeningStatement {
+    color: #fff;
+    text-align: center;
+}
+
+.InputForm,
+.EditInputForm {
+    display:flex;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.InputForm {
+    border: 2px solid #007bff;
+}
+
+.EditInputForm {
+    border: 2px solid #daaa18;
+}
+
+.CloseModalIcon {
+    right: -43px;
+    top: 2px;
+    color: red;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
