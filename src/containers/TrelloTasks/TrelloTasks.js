@@ -126,7 +126,7 @@ class TrelloTasks extends Component {
                             elementType='input' 
                             changed={this.editInputChangedHandler} 
                             value={this.state.editStateValue}
-                            elementConfig={{placeholder: "Add a Todo"}}
+                            elementConfig={{placeholder: "Edit Todo"}}
                             inputRef={this.editInputRef}
                         />
                         <Button btnType="Edit" disabled={!this.state.editStateValue || /^\s*$/.test(this.state.editStateValue)} clicked={this.editTodoHandler}>Edit Todo</Button>

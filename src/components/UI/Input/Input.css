@@ -25,7 +25,7 @@
 }
 
 .InputElement::placeholder {
-    color: #fff;
+    color: #6c757d;
 }
 
 .InputElement:focus {
