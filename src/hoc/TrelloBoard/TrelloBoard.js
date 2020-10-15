@@ -1,12 +1,12 @@
 import React from 'react';
 import classes from './TrelloBoard.css';
 
-const TrelloBoard = props => {
+const TrelloBoard = ({ heading, children }) => {
     return (
         <div className={classes.TrelloBoard}>
-            <h2 className="text-">{props.heading}</h2>
+            <h2>{heading}</h2>
             <div className={classes.TrelloBoardContainers}>
-                {props.children}
+                {children}
             </div>
         </div>
     );
