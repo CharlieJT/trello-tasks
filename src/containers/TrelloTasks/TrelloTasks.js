@@ -95,7 +95,28 @@ class TrelloTasks extends Component {
 
     render() {
 
-        console.log(this.state.trelloItems)
+        const TrelloItems = ({trelloCompletedState, heading, trelloItems}) => {
+            return (
+                <Col xs={12} md={6}>
+                    {trelloItems.filter(trelloItem => trelloItem.completed === trelloCompletedState).length ?
+                    <TrelloBoard heading={heading}>
+                        <ul className="p-3">
+                            {trelloItems.map(trelloItem => {
+                                return (
+                                    trelloItem.completed === trelloCompletedState ?
+                                    <TrelloTask 
+                                        key={trelloItem.id}
+                                        trelloItem={trelloItem}
+                                        switchTodo={this.switchCompleteStateHandler}
+                                        removeTodo={this.removeTrelloItemHandler}
+                                        editTodo={this.editTrelloItemHandler}/> : null
+                                );
+                            })}
+                        </ul>
+                    </TrelloBoard> : null}
+                </Col>
+            );
+        }
 
         return (
             <Container fluid={true}>
@@ -132,43 +153,14 @@ class TrelloTasks extends Component {
                     </Col>
                 </Row>
                 <Row className="mt-3">
-                    <Col xs={12} md={6}>
-                        {this.state.trelloItems.filter(trelloItem => !trelloItem.completed).length &&
-                            <TrelloBoard heading="To Do Items">
-                                <ul className="p-3">
-                                    {this.state.trelloItems.map(trelloItem => {
-                                        return (
-                                            !trelloItem.completed ?
-                                            <TrelloTask 
-                                                key={trelloItem.id}
-                                                trelloItem={trelloItem}
-                                                switchTodo={this.switchCompleteStateHandler}
-                                                removeTodo={this.removeTrelloItemHandler}
-                                                editTodo={this.editTrelloItemHandler}/> : null
-                                        );
-                                    })}
-                                </ul>
-                            </TrelloBoard>
-                        }
-                    </Col>
-                    <Col xs={12} md={6}>
-                        {this.state.trelloItems.filter(trelloItem => trelloItem.completed).length &&
-                            <TrelloBoard heading="Done">
-                                <ul className="p-3">
-                                    {this.state.trelloItems.map(trelloItem => {
-                                        return (
-                                            trelloItem.completed ?
-                                            <TrelloTask 
-                                                key={trelloItem.id}
-                                                trelloItem={trelloItem}
-                                                switchTodo={this.switchCompleteStateHandler}
-                                                removeTodo={this.removeTrelloItemHandler}/> : null
-                                        );
-                                    })}
-                                </ul>
-                            </TrelloBoard>
-                        }
-                    </Col>
+                    <TrelloItems
+                        heading="To Do Items"
+                        trelloItems={this.state.trelloItems}
+                        trelloCompletedState={false}/>
+                    <TrelloItems
+                        heading="Done"
+                        trelloItems={this.state.trelloItems}
+                        trelloCompletedState={true}/>
                 </Row>
             </Container>
         );

@@ -7,7 +7,7 @@ import { FaRedo, FaRegTrashAlt } from 'react-icons/fa';
 const trelloTask = ({ trelloItem, switchTodo, removeTodo, editTodo }) => {
     return (
         <li className={[classes.TrelloTask, 'd-block d-md-flex justify-content-between align-items-center mt-2 p-2'].join(" ")}>
-            <span><p className="mb-0">{trelloItem.todo}</p><muted className={classes.TrelloDateAndTime}>Added: {trelloItem.date}{" "}{trelloItem.time}</muted></span>
+            <span><p className="mb-0">{trelloItem.todo}</p><p className={[classes.TrelloDateAndTime, "text-muted mb-0"].join(" ")}>Added: {trelloItem.date} - {trelloItem.time}</p></span>
             <span className="d-flex justify-content-md-end">
                 {trelloItem.completed ? 
                     <Button clicked={() => switchTodo(trelloItem.id, trelloItem.completed)}>
