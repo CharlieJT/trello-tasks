@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React, { lazy, Suspense } from 'react';
 import classes from './App.css';
-import TrelloTasks from './containers/TrelloTasks/TrelloTasks';
 import Blackboard from './media/images/blackboard.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Spinner from './components/UI/Spinner/Spinner';
 
-class App extends Component {
+const TrelloTasks = lazy(() => import('./containers/TrelloTasks/TrelloTasks'));
 
-	render() {
-		return (
-			<div className={classes.App} style={{ background: `url(${Blackboard}) center center / cover no-repeat fixed` }}>
-				<TrelloTasks />
+const App = () => {
+	return (
+		<Suspense fallback={<Spinner fontSize="8px"/>}>
+			<div className={classes.App}>
+				<img className={classes.mainBackgroundImage} src={Blackboard} alt="Main" />
 			</div>
-		);
-	}
+			<TrelloTasks />
+		</Suspense>
+	);
 }
 
 export default App;

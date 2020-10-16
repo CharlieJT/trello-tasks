@@ -4,6 +4,8 @@ import Button from '../UI/Button/Button';
 import { AiFillEdit, AiOutlineCheck } from 'react-icons/ai';
 import { FaRedo, FaRegTrashAlt } from 'react-icons/fa';
 
+import PropTypes from 'prop-types';
+
 const trelloTask = ({ trelloItem, switchTodo, removeTodo, editTodo }) => {
     return (
         <li className={[classes.TrelloTask, 'd-block d-md-flex justify-content-between align-items-center mt-2 p-2'].join(" ")}>
@@ -28,5 +30,9 @@ const trelloTask = ({ trelloItem, switchTodo, removeTodo, editTodo }) => {
         </li>
     );
 }
+
+trelloTask.propTypes = {
+    trelloItem: PropTypes.object.isRequired
+};
 
 export default trelloTask;

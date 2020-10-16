@@ -32,6 +32,10 @@ class TrelloTasks extends Component {
         }
     }
 
+    componentWillUnmount = () => {
+        console.log("Here it is")
+    }
+
     inputChangedHandler = (event) => {
         const inputText = event.target.value;
         this.setState({ inputTodoValue: inputText });
@@ -48,6 +52,7 @@ class TrelloTasks extends Component {
         const trelloEditItem = trelloItemsState.find(trelloItem => trelloItem.id === this.state.editStateItem.id);
         trelloEditItem.todo = this.state.editStateValue;
         localStorage.setItem("todoList", JSON.stringify(this.state.trelloItems));
+        this.inputRef.current.blur();
         this.modalClosedHandler();
     }
 
@@ -95,10 +100,12 @@ class TrelloTasks extends Component {
 
     render() {
 
-        const TrelloItems = ({trelloCompletedState, heading, trelloItems}) => {
+        const TrelloItems = ({trelloCompletedState, heading}) => {
+            const trelloItems = [...this.state.trelloItems];
+            const completedItems = trelloItems.find(trelloItem => trelloItem.completed === trelloCompletedState);
             return (
                 <Col xs={12} md={6}>
-                    {trelloItems.filter(trelloItem => trelloItem.completed === trelloCompletedState).length ?
+                    {completedItems ?
                     <TrelloBoard heading={heading}>
                         <ul className="p-3">
                             {trelloItems.map(trelloItem => {
@@ -126,7 +133,7 @@ class TrelloTasks extends Component {
                             elementType='input' 
                             changed={this.editInputChangedHandler} 
                             value={this.state.editStateValue}
-                            elementConfig={{placeholder: "Edit Todo"}}
+                            elementConfig={{placeholder: "Add a Todo"}}
                             inputRef={this.editInputRef}
                         />
                         <Button btnType="Edit" disabled={!this.state.editStateValue || /^\s*$/.test(this.state.editStateValue)} clicked={this.editTodoHandler}>Edit Todo</Button>
@@ -155,11 +162,9 @@ class TrelloTasks extends Component {
                 <Row className="mt-3">
                     <TrelloItems
                         heading="To Do Items"
-                        trelloItems={this.state.trelloItems}
                         trelloCompletedState={false}/>
                     <TrelloItems
                         heading="Done"
-                        trelloItems={this.state.trelloItems}
                         trelloCompletedState={true}/>
                 </Row>
             </Container>
