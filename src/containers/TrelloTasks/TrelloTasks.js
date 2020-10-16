@@ -54,6 +54,7 @@ class TrelloTasks extends Component {
         trelloEditItem.todo = this.state.editStateValue;
         trelloEditItem.edited = true;
         trelloEditItem.date = dateShortHandConverter(d);
+        trelloEditItem.time = timeConverter(d),
         localStorage.setItem("todoList", JSON.stringify(this.state.trelloItems));
         this.editInputRef.current.blur();
         this.modalClosedHandler();
