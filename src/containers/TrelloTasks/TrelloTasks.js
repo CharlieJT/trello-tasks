@@ -48,11 +48,14 @@ class TrelloTasks extends Component {
 
     editTodoHandler = e => {
         e.preventDefault();
+        const d = new Date();
         const trelloItemsState = [...this.state.trelloItems];
         const trelloEditItem = trelloItemsState.find(trelloItem => trelloItem.id === this.state.editStateItem.id);
         trelloEditItem.todo = this.state.editStateValue;
+        trelloEditItem.edited = true;
+        trelloEditItem.date = dateShortHandConverter(d);
         localStorage.setItem("todoList", JSON.stringify(this.state.trelloItems));
-        this.inputRef.current.blur();
+        this.editInputRef.current.blur();
         this.modalClosedHandler();
     }
 
@@ -66,7 +69,8 @@ class TrelloTasks extends Component {
             todo: inputValueState,
             completed: false,
             date: dateShortHandConverter(d),
-            time: timeConverter(d)
+            time: timeConverter(d),
+            edited: false
         });
         localStorage.setItem("todoList", JSON.stringify(trelloItemsState));
         this.setState({ trelloItems: trelloItemsState, inputTodoValue: '' });
@@ -159,7 +163,7 @@ class TrelloTasks extends Component {
                         </form>
                     </Col>
                 </Row>
-                <Row className="mt-3">
+                <Row className="my-3">
                     <TrelloItems
                         heading="To Do Items"
                         trelloCompletedState={false}/>
